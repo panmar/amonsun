@@ -22,7 +22,7 @@
     }
 
     html {
-        background-color: rgb(127, 152, 156);
+        background-color: rgb(177, 166, 141);
         color: #1f1e1e;
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
         line-height: 1.6;
@@ -37,8 +37,7 @@
     }
 
     a {
-        color: #294181;
-        text-decoration: none;
+        color: #935635;
     }
 
     .photo-gallery {
@@ -67,7 +66,7 @@
         border-radius: 8%;
         border-width: 5%;
         border-style: solid;
-        border-color: #2b2828;
+        border-color: rgb(159, 150, 127);
     }
 
     @media screen and (max-width: 800px) {
@@ -91,29 +90,7 @@
         <h1> Amonsun </h1>
     </header>
 
-    <p><i>Amonsun</i> is an outdoor environment terrain and sky renderer, created as a part of dissertation project. It
-        is
-        implemented in C++ using Direct3D 11 API.
-    </p>
-
-    <p>The terrain rendering is based on the CDLOD technique. It generates terrain heights and normals on the fly using
-        heightmap and vertex shader with texture fetches, allowing for dynamic terrain modification during runtime.
-        Scene entities are stored in a dynamic octree and rendered with bounding box occlusion queries. Additionally, a
-        simple antiportal system is incorporated in the renderer.</p>
-
-    <p>The terrain is textured by blended detail and normal maps. Application uses forward rendering and supports only
-        one source of light - the sun, which casts shadows computed using shadowmap with PCF filtering. Although this
-        technique performs rather well, it could certainly be improved using techniques like cascaded shadowmaps.
-    </p>
-
-    <p>The terrain is textured by blended detail and normal maps. Application uses forward rendering and supports only
-        one source of light - the sun, which casts shadows computed using shadowmap with PCF filtering. Although this
-        technique performs rather well, it could certainly be improved using techniques like cascaded shadowmaps.
-    </p>
-
-    <p><i>Amonsun</i> is influenced by atmospheric scattering effect based on Hoffman-Preetham model. Light scattering
-        affects
-        terrain based only on sun color</p>
+    <p><i>Amonsun</i> is an outdoor environment renderer focused on terrain, sky, and atmospheric lighting. I implemented it in C++ using the Direct3D 11 API as an exploration of real-time rendering techniques for large-scale outdoor scenes.</p>
 
     <div class="photo-gallery">
         <div class="row">
@@ -123,14 +100,19 @@
             <div class=item><img src="img/amonsun_05.jpg"></div>
             <div class=item><img src="img/amonsun_06.jpg"></div>
             <div class=item><img src="img/amonsun_07.jpg"></div>
-            <div class=item><img src="img/amonsun_09.jpg"></div>
             <div class=item><img src="img/amonsun_10.jpg"></div>
-            <div class=item><img src="img/amonsun_12.jpg"></div>
             <div class=item><img src="img/amonsun_13.jpg"></div>
-            <div class=item><img src="img/amonsun_15.jpg"></div>
             <div class=item><img src="img/amonsun_17.jpg"></div>
         </div>
     </div>
+
+    <p>Terrain rendering is based on the <a href="https://github.com/fstrugar/CDLOD">CDLOD</a> (Continuous Distance-Dependent Level of Detail) technique. Terrain heights and normals are generated on the fly from a heightmap directly in the vertex shader using texture fetches. This approach allows the terrain to be modified dynamically at runtime without preprocessing.</p>
+
+    <p>Scene entities are organized in a dynamic octree, enabling efficient visibility determination. Rendering is further optimized using bounding box occlusion queries, complemented by a simple anti-portal system to reduce overdraw in complex scenes.</p>
+
+    <p>The terrain surface is textured using blended detail maps and normal maps to preserve visual fidelity across different viewing distances. The renderer uses forward rendering and currently supports a single light source — the sun. Sunlight casts shadows generated with shadow mapping and PCF filtering. While this solution performs well, it leaves room for future improvements, such as implementing cascaded shadow maps for better shadow quality over large terrains.</p>
+
+    <p>Atmospheric effects are inspired by the <a href="https://renderwonk.com/publications/gdm-2002/GDM_August_2002.pdf">Hoffman–Preetham</a> atmospheric scattering model. Light scattering is driven by the sun’s color and direction, subtly affecting terrain appearance and helping to integrate the environment into a cohesive outdoor scene.</p>
 
 </body>
 
